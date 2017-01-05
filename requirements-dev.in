@@ -3,3 +3,5 @@ pytest-cov
 pylint
 mypy-lang
 typed_ast
+pep8
+autopep8

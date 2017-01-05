@@ -5,11 +5,13 @@
 #    pip-compile --output-file requirements-dev.txt requirements-dev.in
 #
 astroid==1.4.9            # via pylint
+autopep8==1.2.4
 coverage==4.3.1           # via pytest-cov
 isort==4.2.5              # via pylint
 lazy-object-proxy==1.2.2  # via astroid
 mccabe==0.5.3             # via pylint
 mypy-lang==0.4.6
+pep8==1.7.0
 py==1.4.32                # via pytest
 pylint==1.6.4
 pytest-cov==2.4.0

@@ -25,6 +25,7 @@ PYTHONFILES := $(wildcard **/*.py) $(wildcard *.py)
 PYTEST = pytest
 
 PEP8 = pep8
+AUTOPEP8 = autopep8
 
 ISORT = isort
 ISORTFLAGS = -fss
@@ -47,6 +48,9 @@ compile-deps:
 
 pep8:
 	$(PEP8) $(PYTHONFILES)
+
+autopep8:
+	$(AUTOPEP8) -a -i $(PYTHONFILES)
 
 pylint:
 	$(PYLINT) $(PYLINTFLAGS) $(PYTHONFILES)
