@@ -1,0 +1,5 @@
+pytest
+pytest-cov
+pylint
+mypy-lang
+typed_ast
