@@ -17,5 +17,5 @@ pylint==1.6.4
 pytest-cov==2.4.0
 pytest==3.0.5
 six==1.10.0               # via astroid, pylint
-typed-ast==0.6.1
+typed-ast==0.6.3
 wrapt==1.10.8             # via astroid

@@ -17,10 +17,11 @@ RUN_DEV = docker run \
 	$(IMAGE_DEV)
 
 PIP_COMPILE = pip-compile
+PIP_SYNC = pip-sync
 
 PYLINT = pylint
 PYLINTFLAGS = -rn
-PYTHONFILES := $(wildcard **/*.py) $(wildcard *.py)
+PYTHONFILES := $(shell find . -not -path "./.venv/*" -type f -name '*.py')
 
 PYTEST = pytest
 
@@ -42,9 +43,15 @@ init:
 		pip-sync requirements-dev.txt requirements.txt; \
 	)
 
-compile-deps:
+compile:
 	$(PIP_COMPILE) requirements.in
 	$(PIP_COMPILE) requirements-dev.in
+
+sync: compile
+	$(PIP_SYNC) requirements.txt
+
+sync-dev: compile
+	$(PIP_SYNC) requirements.txt requirements-dev.txt
 
 pep8:
 	$(PEP8) $(PYTHONFILES)
@@ -59,7 +66,7 @@ pytest:
 	$(PYTEST) .
 
 cov:
-	$(PYTEST) --cov .
+	$(PYTEST) --cov-report term-missing --cov=.
 
 mypy:
 	$(MYPY) $(PYTHONFILES) --fast-parser --silent-imports
