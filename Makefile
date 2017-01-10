@@ -25,7 +25,7 @@ PYTHONFILES := $(shell find . -not -path "./.venv/*" -type f -name '*.py')
 
 PYTEST = pytest
 
-PEP8 = pep8
+FLAKE8 = flake8
 AUTOPEP8 = autopep8
 
 ISORT = isort
@@ -53,8 +53,8 @@ sync: compile
 sync-dev: compile
 	$(PIP_SYNC) requirements.txt requirements-dev.txt
 
-pep8:
-	$(PEP8) $(PYTHONFILES)
+flake8:
+	$(FLAKE8) $(PYTHONFILES)
 
 autopep8:
 	$(AUTOPEP8) -a -i $(PYTHONFILES)
@@ -71,7 +71,7 @@ cov:
 mypy:
 	$(MYPY) $(PYTHONFILES) --fast-parser --silent-imports
 
-check: mypy pylint cov pep8
+check: mypy pylint cov flake8
 
 isort:
 	$(ISORT) $(ISORTFLAGS) $(PYTHONFILES)
