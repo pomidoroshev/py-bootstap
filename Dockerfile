@@ -14,4 +14,6 @@ RUN pip-sync requirements.txt
 
 ADD . /app
 
+RUN touch /app/.env
+
 CMD ["python", "main.py"]

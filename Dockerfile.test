@@ -16,4 +16,6 @@ RUN pip-sync requirements-dev.txt requirements.txt
 
 ADD . /app
 
+RUN touch /app/.env
+
 CMD ["make", "check"]
