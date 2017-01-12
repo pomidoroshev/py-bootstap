@@ -35,12 +35,15 @@ MYPY = mypy
 
 init:
 	( \
-		git init .; \
 		virtualenv -p python3 .venv; \
 		source .venv/bin/activate; \
 		pip install -U pip; \
 		pip install pip-tools; \
 		pip-sync requirements-dev.txt requirements.txt; \
+		rm -rf .git; \
+		git init .; \
+		git add .; \
+		git commit -m 'Initial commit'; \
 	)
 
 compile:
