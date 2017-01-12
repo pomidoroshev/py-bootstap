@@ -8,13 +8,7 @@ CONTAINER = $(APP)
 CONTAINER_TEST = $(APP_DEV)
 
 RUN = docker run -d -p 8080:8080 --name $(CONTAINER) $(IMAGE)
-RUN_DEV = docker run \
-	-v `pwd`:/app \
-	--rm \
-	-t \
-	-p 8080:8080 \
-	--name $(CONTAINER_TEST) \
-	$(IMAGE_TEST)
+RUN_DEV = docker run --rm -t $(IMAGE_TEST)
 
 PIP_COMPILE = pip-compile
 PIP_SYNC = pip-sync
