@@ -1,4 +1,4 @@
 __pycache__/
 .venv/
 Dockerfile
-Dockerfile.dev
+Dockerfile.test

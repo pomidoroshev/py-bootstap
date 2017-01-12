@@ -14,4 +14,4 @@ ADD requirements-dev.txt /app
 
 RUN pip-sync requirements-dev.txt requirements.txt
 
-CMD ["python", "main.py"]
+CMD ["make", "check"]

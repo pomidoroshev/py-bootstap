@@ -1,11 +1,11 @@
 APP = app-name
-APP_DEV = $(APP)-dev
+APP_DEV = $(APP)-test
 
 IMAGE = $(APP)
-IMAGE_DEV = $(APP_DEV)
+IMAGE_TEST = $(APP_DEV)
 
 CONTAINER = $(APP)
-CONTAINER_DEV = $(APP_DEV)
+CONTAINER_TEST = $(APP_DEV)
 
 RUN = docker run -d -p 8080:8080 --name $(CONTAINER) $(IMAGE)
 RUN_DEV = docker run \
@@ -13,8 +13,8 @@ RUN_DEV = docker run \
 	--rm \
 	-t \
 	-p 8080:8080 \
-	--name $(CONTAINER_DEV) \
-	$(IMAGE_DEV)
+	--name $(CONTAINER_TEST) \
+	$(IMAGE_TEST)
 
 PIP_COMPILE = pip-compile
 PIP_SYNC = pip-sync
@@ -80,17 +80,17 @@ build:
 	docker build -t $(IMAGE) .
 
 build-dev:
-	docker build -t $(IMAGE_DEV) -f Dockerfile.dev .
+	docker build -t $(IMAGE_TEST) -f Dockerfile.test .
 
 run: build
 	env DEBUG=1 $(RUN)
 
 stop:
-	docker stop $(CONTAINER_DEV)
-	docker rm $(CONTAINER_DEV)
+	docker stop $(CONTAINER_TEST)
+	docker rm $(CONTAINER_TEST)
 
 run-dev: build-dev
 	$(RUN_DEV)
 
 stop-dev:
-	docker rm -f $(CONTAINER_DEV)
+	docker rm -f $(CONTAINER_TEST)
